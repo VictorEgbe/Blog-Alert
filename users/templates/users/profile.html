@@ -1,0 +1,38 @@
+{% extends 'blog/home.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mt-3 mb-3">
+    <img class="rounded-circle mr-4" src="{{ request.user.profile.image.url }}" width="220" height="200" alt="{{user.username}}">
+    <hr>
+  </div>
+  <div class="col-md-6 mt-3 mb-3">
+    <h4> Username : {{request.user.username}} </h4>
+    <p class="text-secondary"> Email: {{request.user.email}} </p>
+    <!-- <p> <a href="{% url 'update_profile' %}">change profile picture</a> </p> -->
+    <hr>
+    <br>
+</div>
+</div>
+
+
+<div class="row">
+{% for object in objects %}
+    <div class="col-md-6">
+      <h4> {{ object.title }} </h4>
+      <p> By <a href="{% url 'user_specific' object.author.username %}"> {{ object.author }} </a> - <span> {{ object.created|timesince}} ago. </span> </p>
+       <p> {{ object.content| truncatechars:100 }} </p>
+        <p>
+          <a class="btn btn-secondary" href="{{ object.get_absolute_url }}" role="button">
+            Read... &raquo;
+          </a>
+        </p>
+        <br>
+        <hr>
+    </div>
+{% endfor %}
+</div>
+{% endblock content %}
+
+
+

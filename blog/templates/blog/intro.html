@@ -1,0 +1,40 @@
+{% extends 'blog/home.html' %}
+
+{% block content %}
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Hello, There!</h1>
+      <h5>
+        Welcome to my first blog app, Blog Alert. This app allows users(like you), to create a free account and write blog posts. You can also comment on posts written by you or others.
+        <p>You are welcome to write about any topic. Be it programming, health, sports, medicine, entertainment, politics and so on...</p>
+      </h5>
+      <p><a class="btn btn-primary btn-lg" href="{% url 'register' %}" role="button">Join Now!&raquo;</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Already Have An Account?</h4>
+        <p><a class="btn btn-secondary" href="{% url 'login' %}" role="button">Log in &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h4>Do You Have a Suggestion?</h4>
+        <a class="btn btn-secondary" href="{% url 'suggestions' %}" role="button">Suggest &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h4>Want to leave your Contact?</h4>
+        <a class="btn btn-secondary" href="{% url 'contact' %}" role="button">Contact &raquo;</a></p>
+      </div>
+    </div>
+
+  </div> <!-- /container -->
+
+  <hr class="featurette-divider">
+</main>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'blog/home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="blog-post">
+  {% if request.user.username == object.author.username %}
+      <a href="{% url 'update' object.pk %}" class="btn btn-outline-info btn-sm mt-2">Update</a>
+      <a href="{% url 'delete' object.pk %}" class="btn btn-outline-danger btn-sm ml-5 mt-2">Delete</a>
+  {% endif %}
+        <h2 class="blog-post-title">{{ object.title }}</h2>
+      <p class="blog-post-meta">{{ object.created }} by <a href="{% url 'user_specific' object.author.username %}">{{ object.author.username }}</a></p>
+        <hr>
+          <p>{{ object.content|linebreaks }}</p>
+      </div><!-- /.blog-post -->
+      <br>
+<hr>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-primary btn-sm mb-3">
+        comment
+    </button>
+</form>
+
+<div>
+    {% for comment in comments %}
+        <p>By <a href="{% url 'user_specific' comment.author.username %}">{{ comment.author }}</a> on {{ comment.created }}</p>
+        <p> {{ comment }} </p>
+        <hr>
+    {% endfor %}
+</div>
+
+{% endblock content %}
